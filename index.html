@@ -1,0 +1,83 @@
+<style>
+	@font-face {
+		font-family: Arcade;
+		src: url("arcade.regular.ttf") format("truetype");
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: Arcade, Helvetica, Arial, sans-serif;
+	}
+
+	header {
+		margin: 0 auto;
+		width: 431px;
+	}
+
+	#game {
+		width: 431;
+		margin: 0 auto;
+		gap: 30px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#score-block {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 30px;
+	}
+
+	#score-block > div {
+		border: 1px solid #ddd;
+		padding: 30px;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 9px;
+		font-weight: bold;
+		color: #444;
+	}
+
+	#score-block span {
+		margin-top: 10px;
+		font-size: 50px;
+	}
+
+	#canvas {
+		border-radius: 9px;
+	}
+</style>
+
+<html>
+	<body>
+		<div id="game">
+			<div id="score-block">
+				<div><span>0</span></div>
+				<div><span>0</span></div>
+				<div><span>0</span></div>
+				<div><span>0</span></div>
+			</div>
+			<canvas id="canvas" width="431" height="768"></canvas>
+		</div>
+	</body>
+</html>
+
+<script src="flappyBirdGame.js"></script>
+<script>
+	const scoreBlock = document.querySelector("#score-block");
+	const flappyBirdGame = new FlappyBirdGame("canvas", {
+		speed: 3,
+		scoreBlock: scoreBlock,
+	});
+</script>
