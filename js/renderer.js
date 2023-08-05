@@ -139,7 +139,7 @@ class Renderer {
 		this.ctx.stroke();
 		this.ctx.fill();
 
-		const fontSize = this.game.browser === "safari" ? "36" : "45";
+		const fontSize = this.game.browser === "safari" ? "36" : "48";
 		const restartText = "RESTART".split("").join(String.fromCharCode(8202));
 		this.ctx.fillStyle = "#ff0000";
 		this.ctx.font = `bold ${fontSize}px Arcade,Helvetica,Arial,sans-serif`;

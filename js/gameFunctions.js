@@ -58,7 +58,7 @@ class GameFunctions {
 			pipe.x >= this.bird.x - this.pipes.size.width - this.speed
 		) {
 			this.score++;
-			this.sounds.score.playSound();
+			this.sounds.score.play();
 
 			/*
 			Увеличим скорость. Первая цель 10 очков
@@ -218,7 +218,11 @@ class GameFunctions {
 	};
 
 	birdJump = () => {
-		if (this.gameOver === false && this.started === true) {
+		if (
+			this.gameOver === false &&
+			this.started === true &&
+			this.pause === false
+		) {
 			this.sounds.flap.playSound();
 			this.birdYTurnPoint = this.birdY - this.topBirdStep();
 			this.birdYDirection = "up";
@@ -227,34 +231,42 @@ class GameFunctions {
 
 	controllersInit = () => {
 		this.canvas.addEventListener("mouseover", () => {
-			this.clickEventListener = addEventListener("click", (event) => {
-				if (this.started === false) {
-					this.startGame();
-					this.sounds.game.play();
-				} else {
-					this.birdJump();
-				}
-
-				if (this.gameOver === true) {
-					let x = event.pageX - this.canvas.elemLeft,
-						y = event.pageY - this.canvas.elemTop;
-					if (x >= 90 && x <= 350 && y >= 590 && y <= 690) {
-						this.init();
+			"click touchstart".split(" ").forEach((e) => {
+				this.clickEventListener = addEventListener(e, (event) => {
+					if (this.started === false) {
 						this.startGame();
+						this.sounds.game.play();
+					} else {
+						this.birdJump();
 					}
-				}
+
+					if (this.gameOver === true) {
+						let x = event.pageX - this.canvas.offsetLeft,
+							y = event.pageY - this.canvas.offsetTop;
+
+						if (
+							x >= this.canvas.width * 0.2 &&
+							x <= this.canvas.width * 0.8 &&
+							y >= this.canvas.height - 200 &&
+							y <= this.canvas.height - 100
+						) {
+							this.init();
+							this.startGame();
+						}
+					}
+				});
 			});
 		});
 
-		document.getElementById("canvas").addEventListener("mouseover", () => {
+		document.getElementById("canvas").addEventListener("mouseout", () => {
 			this.canvas.removeEventListener("click", this.clickEventListener);
 		});
 
-		this.canvas.removeEventListener("click", this.clickEventListener);
-
 		window.onkeyup = (e) => {
 			if (e.code === "ArrowUp") {
-				this.birdJump();
+				if (this.started === true && this.gameOver === false) {
+					this.birdJump();
+				}
 			}
 
 			if (e.code === "Enter") {
