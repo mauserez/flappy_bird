@@ -1,0 +1,86 @@
+@font-face {
+	font-family: Arcade;
+	src: url("/fonts/arcade.regular.ttf") format("truetype");
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	margin: 0;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: Arcade, Helvetica, Arial, sans-serif;
+	height: 100vh;
+}
+
+#game {
+	width: 431px;
+	gap: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#score-block {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+}
+
+#score-block > div {
+	border: 1px solid #ddd;
+	padding: 30px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9px;
+	font-weight: bold;
+	color: #444;
+}
+
+#score-block span {
+	margin-top: 10px;
+	font-size: 50px;
+}
+
+#canvas {
+	border-radius: 9px;
+}
+
+@media screen and (max-width: 431px) {
+	.container {
+		align-items: start;
+	}
+
+	#game {
+		width: 100%;
+		gap: 15px;
+		padding: 15px 0;
+	}
+
+	#score-block {
+		gap: 15px;
+		padding: 0 15px;
+	}
+
+	#score-block > div {
+		padding: 15px;
+	}
+
+	#canvas {
+		width: calc(100vw - 30px);
+		height: 500;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	#canvas {
+		height: calc(100vh - 110px);
+	}
+}

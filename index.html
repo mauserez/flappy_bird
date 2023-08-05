@@ -1,83 +1,43 @@
-<style>
-	@font-face {
-		font-family: Arcade;
-		src: url("arcade.regular.ttf") format("truetype");
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	body {
-		margin: 0;
-		text-align: center;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: Arcade, Helvetica, Arial, sans-serif;
-	}
-
-	header {
-		margin: 0 auto;
-		width: 431px;
-	}
-
-	#game {
-		width: 431;
-		margin: 0 auto;
-		gap: 30px;
-		display: flex;
-		flex-direction: column;
-	}
-
-	#score-block {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 30px;
-	}
-
-	#score-block > div {
-		border: 1px solid #ddd;
-		padding: 30px;
-		height: 60px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 9px;
-		font-weight: bold;
-		color: #444;
-	}
-
-	#score-block span {
-		margin-top: 10px;
-		font-size: 50px;
-	}
-
-	#canvas {
-		border-radius: 9px;
-	}
-</style>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Flappy Bird</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+		/>
+		<link rel="icon" type="image/x-icon" href="/birdSprites/0-0.png" />
+	</head>
+	<link rel="stylesheet" href="style.css" />
 	<body>
-		<div id="game">
-			<div id="score-block">
-				<div><span>0</span></div>
-				<div><span>0</span></div>
-				<div><span>0</span></div>
-				<div><span>0</span></div>
+		<div class="container">
+			<div id="game">
+				<div id="score-block">
+					<div><span>0</span></div>
+					<div><span>0</span></div>
+					<div><span>0</span></div>
+					<div><span>0</span></div>
+				</div>
+				<canvas id="canvas" width="431" height="768"></canvas>
 			</div>
-			<canvas id="canvas" width="431" height="768"></canvas>
 		</div>
 	</body>
 </html>
 
-<script src="flappyBirdGame.js"></script>
+<script src="/js/gameSounds.js"></script>
+<script src="/js/gameFunctions.js"></script>
+<script src="/js/planes.js"></script>
+<script src="/js/bird.js"></script>
+<script src="/js/pipes.js"></script>
+<script src="/js/renderer.js"></script>
+<script src="/js/flappyBirdGame.js"></script>
+
 <script>
 	const scoreBlock = document.querySelector("#score-block");
 	const flappyBirdGame = new FlappyBirdGame("canvas", {
-		speed: 3,
+		speed: 5,
 		scoreBlock: scoreBlock,
 	});
 </script>
