@@ -9,9 +9,7 @@ class GameSounds {
 		};
 
 		for (const sound in sounds) {
-			if (Object.hasOwnProperty.call(sounds, sound)) {
-				this[sound] = this.createSound(`/sounds/${sounds[sound]}`, `${sound}`);
-			}
+			this[sound] = this.createSound(`/sounds/${sounds[sound]}`, `${sound}`);
 		}
 	}
 
